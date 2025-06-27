@@ -1,16 +1,15 @@
-# FastAPI CRUD Study
+# Projeto FastAPI: Music Album CRUD
 
-Pequeno projeto de estudo FastAPI (CRUD de álbuns).
+## Endpoints
+
+- `GET /albums`: lista todos
+- `POST /albums`: adiciona novo
+- `GET /albums/{id}`: busca por ID
+- `PUT /albums/{id}`: edita
+- `DELETE /albums/{id}`: remove
 
 ## Funcionalidades
 
-- CRUD de álbuns com FastAPI
+- Código assíncrono
 - Validação com Pydantic
-- Status HTTP corretos
-- Estrutura modular
-
-## Aprendizados - Dia 3
-
-- Entendi quando usar async/await em APIs
-- Aprendi a usar asyncio.gather para paralelizar tarefas
-- Criei simulações de endpoints bloqueantes vs não-bloqueantes
+- Erros tratados com HTTPException
