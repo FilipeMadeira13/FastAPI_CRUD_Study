@@ -21,6 +21,7 @@ async def async_simulation():
 
 @router.get("/paralelo")
 async def tarefa_paralela():
+    # Tempo de execução por volta de 3 segundos
     async def tarefa(n):
         await asyncio.sleep(n)
         return f"Tarefa {n}s finalizada"
