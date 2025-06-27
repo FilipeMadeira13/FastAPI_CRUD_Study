@@ -1,15 +1,21 @@
-# Projeto FastAPI: Music Album CRUD
+## Projeto: API de Álbuns com FastAPI
 
-## Endpoints
+### Features:
 
-- `GET /albums`: lista todos
-- `POST /albums`: adiciona novo
-- `GET /albums/{id}`: busca por ID
-- `PUT /albums/{id}`: edita
-- `DELETE /albums/{id}`: remove
+- API REST assíncrona
+- Validações com Pydantic
+- Rotas com tratamento de erros
+- Estrutura modular
+- Simulação de banco com lista
 
-## Funcionalidades
+### Exemplo de chamada POST:
 
-- Código assíncrono
-- Validação com Pydantic
-- Erros tratados com HTTPException
+```json
+{
+  "id": 1,
+  "title": "Origin of Symmetry",
+  "artist": "Muse",
+  "year": 2001,
+  "genre": "Alternative Rock"
+}
+```
