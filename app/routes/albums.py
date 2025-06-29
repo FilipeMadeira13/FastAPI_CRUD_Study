@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, Response, status
 
 from app.database.memory import db_albums
 from app.models.album import Album
@@ -33,7 +33,7 @@ async def get_album(album_id: int) -> Album:
         if album.id == album_id:
             return album
     raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND, detail="Álbum não encontrado"
+        status_code=status.HTTP_404_NOT_FOUND, detail=f"Álbum com ID {album_id} não encontrado"
     )
 
 
@@ -44,9 +44,14 @@ async def create_album(album: Album) -> Album:
     Args:
         album (Album): classe Album com todos os seus campos para serem editados.
 
+    Raises:
+        HTTPException: Exceção levantada se o álbum com o id já existe.
+
     Returns:
         Album: O álbum criado.
     """
+    if any(a.id == album.id for a in db_albums):
+        raise HTTPException(status_code=400, detail="ID já existente")
     db_albums.append(album)
     return album
 
@@ -70,7 +75,7 @@ async def update_album(album_id: int, album: Album) -> Album:
             db_albums[i] = album
             return album
     raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND, detail="Álbum não encontrado"
+        status_code=status.HTTP_404_NOT_FOUND, detail=f"Álbum com ID {album_id} não encontrado"
     )
 
 
@@ -90,7 +95,7 @@ async def delete_album(album_id: int):
     for i, a in enumerate(db_albums):
         if a.id == album_id:
             db_albums.pop(i)
-            return {"message": "Deleted"}
+            return Response(status_code=status.HTTP_204_NO_CONTENT)
     raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND, detail="Álbum não encontrado"
+        status_code=status.HTTP_404_NOT_FOUND, detail=f"Álbum com ID {album_id} não encontrado"
     )
