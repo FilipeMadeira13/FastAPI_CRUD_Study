@@ -6,7 +6,6 @@ from app.crud.album import create_album as crud_create
 from app.crud.album import delete_album as crud_delete
 from app.crud.album import get_album_by_id, get_all_albums
 from app.crud.album import update_album as crud_update
-from app.database.memory import db_albums
 from app.database.postgres import SessionLocal
 from app.models.album_model import Album, AlbumCreate, AlbumSchema, AlbumUpdate
 
